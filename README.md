@@ -5,7 +5,7 @@ This simple app demonstrates how to send and recieve cryptocurrency payments usi
 ## Features
 
 - Create an account and login to your application with Hydrogen-managed OAuth
-- Send and recieve cryptocurrency to other users
+- Send cryptocurrency to other users
 - Access your blockchain wallet with your username or email address
 - View your transactions on Etherscan block explorer
 
