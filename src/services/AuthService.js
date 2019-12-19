@@ -1,5 +1,5 @@
 import * as HttpStatus from 'http-status-codes';
-import { MOLECULE_URL, CLIENT_ID, CLIENT_SECRET, BASE_URL, ACCOUNT_TYPE_ID } from '../config/ConfigGlobal';
+import { MOLECULE_URL, DEFAULT_CLIENT_ROLE, CLIENT_ID, CLIENT_SECRET, BASE_URL, ACCOUNT_TYPE_ID } from '../config/ConfigGlobal';
 import MoleculeService from './MoleculeService';
 
 let accessToken;
@@ -115,7 +115,7 @@ export default class AuthService {
     let requestBody = {
       username: userInfo.username,
       password: userInfo.password,
-      authorities: 'ROLE_ADMIN',
+      authorities: DEFAULT_CLIENT_ROLE,
       is_account_non_expired: true,
       is_account_non_locked: true,
       is_credentials_non_expired: true,

@@ -4,3 +4,4 @@ export const CLIENT_ID = 'IntegrationTest';
 export const CLIENT_SECRET = 'IntegrationTest';
 export const ACCOUNT_TYPE_ID = 'ok';
 export const NETWORK = 'ropsten';
+export const DEFAULT_CLIENT_ROLE = 'ROLE_ADVISOR';
