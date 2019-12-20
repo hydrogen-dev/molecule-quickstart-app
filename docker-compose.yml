@@ -1,0 +1,16 @@
+version: '3.0'
+
+services:
+  molecule-quickstart-build:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      image: molecule-quickstart-build:latest
+
+  molecule-quickstart:
+      build:
+         context: .
+         dockerfile: Dockerfile
+      image: molecule-quickstart:latest
+      
+
