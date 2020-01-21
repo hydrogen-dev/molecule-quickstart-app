@@ -1,16 +1,16 @@
-version: '3.0'
+version: "3.0"
 
 services:
   molecule-quickstart-build:
-      build:
-         context: .
-         dockerfile: Dockerfile
-      image: molecule-quickstart-build:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: molecule-quickstart-build:latest
 
   molecule-quickstart:
-      build:
-         context: .
-         dockerfile: Dockerfile
-      image: molecule-quickstart:latest
-      
-
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: molecule-quickstart:latest
+    ports:
+      - "3000"

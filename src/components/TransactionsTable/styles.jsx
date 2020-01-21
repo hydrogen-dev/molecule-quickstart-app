@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     justifyContent: "space-between"
   },
   transactionsHeader: {
-    textAlign: "center",
+    textAlign: "flex-start",
     padding: 20,
     color: "#f50057"
   },

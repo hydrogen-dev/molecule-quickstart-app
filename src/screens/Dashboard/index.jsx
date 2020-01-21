@@ -11,6 +11,7 @@ import Modal from "../../components/Modal";
 import useStyles from "./styles";
 import ReactDOM from "react-dom";
 import TransactionsTable from "../../components/TransactionsTable";
+import TokenGrid from "../../components/TokenGrid";
 
 const Dashboard = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -29,8 +30,6 @@ const Dashboard = () => {
     tokenList,
     walletList,
     getWallets,
-    getTransactions,
-    transactions,
     currency,
     setCurrency,
     amount,
@@ -39,7 +38,6 @@ const Dashboard = () => {
     toAddress,
     setToAddress,
     currencyList,
-    getCurrencies,
     balance,
     getBalance,
     setTransactionList
@@ -86,10 +84,8 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getTransactions();
     getTokens();
     getWallets();
-    getCurrencies();
     getBalance();
   }, [setTransactionList]);
 
@@ -125,10 +121,15 @@ const Dashboard = () => {
               document.body
             )
           : null}
-        <Grid item xs={12} container spacing={3}>
-          <TransactionsTable transactions={transactions} />
+        <Grid container spacing={2}>
+          <Grid item xs={6} container spacing={2}>
+            <TokenGrid />
+          </Grid>
+          <Grid item xs={6} container spacing={2}>
+            <TransactionsTable />
+          </Grid>
         </Grid>
-        <Grid item xs={12} container spacing={3}>
+        <Grid item xs={2} container spacing={3}>
           <Snackbar
             anchorOrigin={{
               vertical: "bottom",
