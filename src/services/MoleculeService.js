@@ -151,7 +151,7 @@ export default class MoleculeService {
 
     const json = await response.json();
 
-    if (response.status !== HttpStatus.OK || HttpStatus.CREATED) {
+    if (response.status !== HttpStatus.OK) {
       console.log('[postWalletKey] - unable to fetch', json);
       return this.handleError(json.message)
     }

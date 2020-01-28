@@ -14,8 +14,7 @@ This simple app demonstrates how to send and receive cryptocurrency payments usi
 1. Clone the repo to your computer. Test API keys are included in the project, but you can update `config/ConfigGlobal` with your own Hydrogen API keys if you wish.
 2. `npm i`
 3. `npm run start`
-4. _You must disable CORS in your browser for the app to run._ You can download a plugin from the chrome store, or just launch chrome with web security disabled.
-   For Linux users, that command is `google-chrome --disable-web-security`. On OSX, it's `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
+4. _You must disable CORS in your browser for the app to run._ For **Google Chrome** users on **Linux**, that command is `google-chrome --disable-web-security`. On **OSX**, it's `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 5. Visit `localhost:3000`
 
 # Demo App Tutorial
@@ -192,7 +191,7 @@ let payload = {
 }
 ```
 
-You'll notice that we're sending Ethereum, but we haven't funded our account yet. Fortunately, each Molecule wallet in Sandbox is awarded an initial Ethereum balance to use to cover test transactions. If we make a transaction with <.00001 Ether, our transaction will go through and our counterparty will receive their Ether.
+You'll notice that we're sending Ethereum, but we haven't funded our account yet. Fortunately, each Molecule wallet in Sandbox is awarded an initial Ethereum balance to use to cover test transactions. If we make a transaction with ~.0000000000001 Ether, our transaction will go through and our counterparty will receive their Ether.
 
 ```
 async sendTransaction(payload) {

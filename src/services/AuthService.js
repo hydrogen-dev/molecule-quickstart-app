@@ -195,7 +195,7 @@ export default class AuthService {
       body: JSON.stringify(requestBody),
     })
 
-    if (response.status !== HttpStatus.CREATED) {
+    if (response.status !== HttpStatus.OK) {
       let json = await response.json();
       console.log('[createClient] - unable to fetch', json);
       return false;
