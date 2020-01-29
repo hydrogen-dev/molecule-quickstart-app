@@ -31,7 +31,9 @@ function Navbar({ state, dispatch, handleToggleModal, balance }) {
               {state.user !== undefined ? `Welcome ${state.user}!` : ""}
             </Typography>
             <Typography variant="h6" className={classes.balanceTitle}>
-              {balance !== undefined ? `Balance: ${balance}` : ""}
+              {balance !== 0 || undefined
+                ? `Balance: ${balance} ETH`
+                : `Balance: ${0.01} ETH`}
             </Typography>
           </Grid>
           <Grid
