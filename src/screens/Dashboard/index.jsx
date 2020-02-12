@@ -11,6 +11,8 @@ import Modal from "../../components/Modal";
 import useStyles from "./styles";
 import ReactDOM from "react-dom";
 import TransactionsTable from "../../components/TransactionsTable";
+import BarChart from "../../components/Charts/BarChart";
+import PieChart from "../../components/Charts/PieChart";
 
 const Dashboard = () => {
   const { state, dispatch } = useContext(AppContext);
@@ -42,7 +44,9 @@ const Dashboard = () => {
     getCurrencies,
     balance,
     getBalance,
-    setTransactionList
+    setTransactionList,
+    getPieChartData,
+    pieChartData
   } = useMolecule();
 
   const handleSubmit = async () => {
@@ -82,6 +86,14 @@ const Dashboard = () => {
   };
 
   const handleMaxAmount = () => {
+    let maxAmount;
+
+    if (balance === 0 || undefined) {
+      console.log("max");
+      maxAmount = 0.0000000000001;
+      return setAmount(maxAmount);
+    }
+
     return setAmount(balance);
   };
 
@@ -91,6 +103,7 @@ const Dashboard = () => {
     getWallets();
     getCurrencies();
     getBalance();
+    getPieChartData();
   }, [setTransactionList]);
 
   return (
@@ -125,6 +138,21 @@ const Dashboard = () => {
               document.body
             )
           : null}
+        <Grid container spacing={3}>
+          <PieChart
+            loading={loading}
+            chartData={pieChartData !== undefined ? pieChartData : []}
+            title={"My Holdings"}
+          />
+          <BarChart
+            chartData={[]}
+            loading={loading}
+            // interval={interval}
+            // handleIntervalChange={handleIntervalChange}
+            securityPrices={[]}
+            title={"Portfolio Value"}
+          />
+        </Grid>
         <Grid item xs={12} container spacing={3}>
           <TransactionsTable transactions={transactions} />
         </Grid>

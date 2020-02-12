@@ -1,7 +1,7 @@
 
 import AuthService from './AuthService';
 import * as HttpStatus from 'http-status-codes';
-import { MOLECULE_URL, } from '../config/ConfigGlobal';
+import { MOLECULE_URL, BASE_URL, } from '../config/ConfigGlobal';
 
 export default class MoleculeService {
   constructor() {
@@ -214,6 +214,50 @@ export default class MoleculeService {
 
     const username = json.name;
     return username;
+  }
+
+
+  async getModelHoldings() {
+
+    let accessToken = await localStorage.getItem('accessToken');
+
+    let url = BASE_URL + 'nucleus/v1/model_holding?page=0&size=25&order_by=update_date&ascending=false';
+
+    let response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+        'Content-Type': 'application/json'
+      },
+    })
+
+    const json = await response.json();
+    console.log('zzz', json);
+
+    if (response.status !== HttpStatus.OK) {
+      console.log('[getModelHoldings] - unable to fetch', json);
+      return [];
+    }
+
+    const holdings = json.content;
+
+    let securities = [];
+
+    // set random color for donut chart
+    const color = () => {
+      return "#" + ((1 << 24) * Math.random() | 0).toString(16);
+    }
+
+    for (let i in holdings) {
+      securities.push({
+        'label': i.security_id,
+        'value': i.current_weight,
+        'color': color,
+      })
+    }
+
+    console.log('[getModelHoldings] - success', securities);
+    return securities;
   }
 
   async handleSuccess(type, json) {

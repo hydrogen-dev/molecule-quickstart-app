@@ -12,6 +12,7 @@ const useMolecule = () => {
   const [currency, setCurrency] = useState('');
   const [walletList, setWalletList] = useState([]);
   const [balance, setBalance] = useState();
+  const [pieChartData, setPieChartData] = useState();
 
   const getTransactions = async () => {
     let response = await moleculeService.getTransactions();
@@ -54,6 +55,11 @@ const useMolecule = () => {
     return setCurrencyList(response);
   }
 
+  const getPieChartData = async () => {
+    let response = await moleculeService.getModelHoldings();
+    return setPieChartData(response);
+  }
+
   const submitSend = async () => {
     const sender = await localStorage.getItem('walletId');
 
@@ -88,6 +94,8 @@ const useMolecule = () => {
     getCurrencies,
     balance,
     getBalance,
+    pieChartData,
+    getPieChartData
   };
 }
 
