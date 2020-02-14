@@ -9,6 +9,7 @@ import useStyles from "./styles";
 function PieChart(props) {
   const classes = useStyles();
   const { chartData, loading, title } = props;
+  const mockData = [{ label: "ETH", value: 0.1, color: "#ffa600" }];
   return (
     <Grid item xs={6}>
       <Card className={classes.card}>
@@ -30,7 +31,7 @@ function PieChart(props) {
                 }}
                 width={500}
                 height={350}
-                data={chartData}
+                data={mockData}
                 showFloatingLabels
               />
             </div>
