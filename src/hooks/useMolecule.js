@@ -13,6 +13,7 @@ const useMolecule = () => {
   const [walletList, setWalletList] = useState([]);
   const [balance, setBalance] = useState();
   const [pieChartData, setPieChartData] = useState();
+  const [lineChartData, setLineChartData] = useState([]);
 
   const getTransactions = async () => {
     let response = await moleculeService.getTransactions();
@@ -60,6 +61,38 @@ const useMolecule = () => {
     return setPieChartData(response);
   }
 
+  const getLineChartData = async () => {
+    const sender = await localStorage.getItem('walletId');
+    let response = await moleculeService.getCurrencyBalance();
+    let onlyMine = response.filter(i => i.wallet_id === sender);
+    // let filtered = [{
+    //   date: new Date(),
+    //   price: { one: 2400 },
+    //   date: new Date("2019-01-01T00:00:00.000Z"),
+    //   price: { one: 3500 },
+    // }]
+    let filtered = onlyMine.slice(onlyMine.length - 1, onlyMine.length).map(i => ({
+      date: new Date(i.update_date),
+      price: {
+        one: i.balance.slice(0, 6)
+      }
+    }))
+
+    if (onlyMine.length === 0) {
+      let data = [{
+        date: new Date("2019-01-01T00:00:00.000Z"),
+        price: {
+          one: 0.01
+        }
+      }]
+
+      return setLineChartData(data);
+    }
+
+
+    return setLineChartData(filtered);
+  }
+
   const submitSend = async () => {
     const sender = await localStorage.getItem('walletId');
 
@@ -95,7 +128,9 @@ const useMolecule = () => {
     balance,
     getBalance,
     pieChartData,
-    getPieChartData
+    getPieChartData,
+    lineChartData,
+    getLineChartData
   };
 }
 

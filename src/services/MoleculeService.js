@@ -80,6 +80,30 @@ export default class MoleculeService {
     return currencies;
   }
 
+  async getCurrencyBalance() {
+
+    let accessToken = await localStorage.getItem('accessToken');
+    let url = MOLECULE_URL + 'currency_balance';
+
+    let response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken,
+      },
+    })
+
+    const json = await response.json();
+    const currencies = json.content;
+
+    if (response.status !== HttpStatus.OK) {
+      console.log('[getCurrencyBalance] - unable to fetch', json);
+      return [];
+    }
+
+    console.log('[getCurrencyBalance] - success', currencies);
+    return currencies;
+  }
+
   async getWallets() {
 
     let accessToken = await localStorage.getItem('accessToken');

@@ -46,7 +46,9 @@ const Dashboard = () => {
     getBalance,
     setTransactionList,
     getPieChartData,
-    pieChartData
+    pieChartData,
+    lineChartData,
+    getLineChartData
   } = useMolecule();
 
   const handleSubmit = async () => {
@@ -104,58 +106,8 @@ const Dashboard = () => {
     getCurrencies();
     getBalance();
     getPieChartData();
+    getLineChartData();
   }, [setTransactionList]);
-
-  const data = [
-    {
-      date: new Date("2019-01-01T00:00:00.000Z"),
-      price: { one: 2400, two: 800, sum: 3200 }
-    },
-    {
-      date: new Date("2019-02-01T00:00:00.000Z"),
-      price: { one: 3200, two: 800, sum: 4000 }
-    },
-    {
-      date: new Date("2019-03-01T00:00:00.000Z"),
-      price: { one: 4000, two: 800, sum: 4800 }
-    },
-    {
-      date: new Date("2019-04-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-05-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-06-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-07-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-08-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-09-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-10-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-11-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    },
-    {
-      date: new Date("2019-12-01T00:00:00.000Z"),
-      price: { one: 400, two: 600, sum: 1000 }
-    }
-  ];
 
   return (
     <>
@@ -196,11 +148,11 @@ const Dashboard = () => {
             title={"My Holdings"}
           />
           <BarChart
-            chartData={data}
+            chartData={lineChartData}
             loading={loading}
             // interval={interval}
             // handleIntervalChange={handleIntervalChange}
-            securityPrices={data}
+            securityPrices={lineChartData}
             title={"Portfolio Value"}
           />
         </Grid>
