@@ -14,5 +14,5 @@ This demo React app demonstrates how to send and receive cryptocurrency payments
 1. Clone the repo to your computer. Update `config/ConfigGlobal` with your own Hydrogen API keys if you have access to the Molecule API.
 2. `npm i`
 3. `npm run start`
-4. _You must disable CORS in your browser for the app to run._ For **Google Chrome** users on **Linux**, that command is `google-chrome --disable-web-security`. On **OSX**, it's `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
+4. _You must disable CORS in your browser for the app to run._ For **Google Chrome** users on **Linux**, that command is `google-chrome --disable-web-security`. On **OSX**, open the Terminal and type `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 5. Visit `localhost:3000`
